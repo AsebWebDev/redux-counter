@@ -5,7 +5,10 @@ const initialState = {
 function rootReducer(state=initialState, action) {
   switch(action.type) {
     case "INCREMENT": 
-      debugger
+      state.count++;
+      return state;
+    case "DECREMENT": 
+      state.count--;
       return state
     default:
       return state
@@ -19,10 +22,14 @@ $(document).ready(function () {
     store.dispatch({
       type: "INCREMENT"
     })
+    let currentState = store.getState();
+    $("#counter").text(currentState.count)
   })
-  $("#increment").on("click", function(){
+  $("#decrement").on("click", function(){
     store.dispatch({
       type: "DECREMENT"
     })
+    let currentState = store.getState();
+    $("#counter").text(currentState.count)
   })
 });
