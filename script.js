@@ -3,13 +3,14 @@ const initialState = {
 }
 
 function rootReducer(state=initialState, action) {
+  let newState = {...state};
   switch(action.type) {
     case "INCREMENT": 
-      state.count++;
-      return state;
+      newState.count++;
+      return newState;
     case "DECREMENT": 
-      state.count--;
-      return state
+      newState.count--;
+      return newState
     default:
       return state
   }
@@ -18,6 +19,8 @@ function rootReducer(state=initialState, action) {
 const store = Redux.createStore(rootReducer);
 
 $(document).ready(function () {
+  let currentState = store.getState();
+  $("#counter").text(currentState.count);
   $("#increment").on("click", function(){
     store.dispatch({
       type: "INCREMENT"
