@@ -3,8 +3,26 @@ const initialState = {
 }
 
 function rootReducer(state=initialState, action) {
-  debugger
-  return state
+  switch(action.type) {
+    case "INCREMENT": 
+      debugger
+      return state
+    default:
+      return state
+  }
 }
 
 const store = Redux.createStore(rootReducer);
+
+$(document).ready(function () {
+  $("#increment").on("click", function(){
+    store.dispatch({
+      type: "INCREMENT"
+    })
+  })
+  $("#increment").on("click", function(){
+    store.dispatch({
+      type: "DECREMENT"
+    })
+  })
+});
